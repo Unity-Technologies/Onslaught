@@ -31,9 +31,9 @@ public class InputAbstraction
         if (XRSettings.loadedDeviceName == "daydream")
         {
             if (hand == Handedness.LEFT)
-                return Input.GetButton("Button4");
+                return Input.GetButton("Button2");
             else // right hand
-                return Input.GetButton("Button5");
+                return Input.GetButton("Button0");
         }
         else
         {
