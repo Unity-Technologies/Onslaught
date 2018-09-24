@@ -31,16 +31,16 @@ public class InputAbstraction
         if (XRSettings.loadedDeviceName == "daydream")
         {
             if (hand == Handedness.LEFT)
-                return Input.GetButton("Button2");
+                return Input.GetButton("VR_PrimaryButton_Left");
             else // right hand
-                return Input.GetButton("Button0");
+                return Input.GetButton("VR_PrimaryButton_Right");
         }
         else
         {
             if (hand == Handedness.LEFT)
-                return Input.GetAxis("Axis9") > m_FireTriggerThreshold;
+                return Input.GetAxis("VR_TriggerAxis_Left") > m_FireTriggerThreshold;
             else // right hand
-                return Input.GetAxis("Axis10") > m_FireTriggerThreshold;
+                return Input.GetAxis("VR_TriggerAxis_Right") > m_FireTriggerThreshold;
         }
     }
 
@@ -51,9 +51,9 @@ public class InputAbstraction
             switch (Alias)
             {
                 case ButtonAlias.AXIS_CLICK:
-                    return "Button8";
+                    return "VR_Primary2DAxisClickButton_Left";
                 case ButtonAlias.AXIS_TOUCH:
-                    return "Button16";
+                    return "VR_Primary2DAxisTouchButton_Left";
                 default:
                     return "";
             }
@@ -63,9 +63,9 @@ public class InputAbstraction
             switch (Alias)
             {
                 case ButtonAlias.AXIS_CLICK:
-                    return "Button9";
+                    return "VR_Primary2DAxisClickButton_Right";
                 case ButtonAlias.AXIS_TOUCH:
-                    return "Button17";
+                    return "VR_Primary2DAxisTouchButton_Right";
                 default:
                     return "";
             }
@@ -82,9 +82,9 @@ public class InputAbstraction
                 switch (Alias)
                 {
                     case AxisAlias.X:
-                        return "Axis2Inv";
+                        return "VR_Primary2DAxis_Y_Left";
                     case AxisAlias.Y:
-                        return "Axis1";
+                        return "VR_Primary2DAxis_X_Left";
                     default:
                         return "";
                 }
@@ -94,9 +94,9 @@ public class InputAbstraction
                 switch (Alias)
                 {
                     case AxisAlias.X:
-                        return "Axis5";
+                        return "VR_Primary2DAxis_InvY_Right";
                     case AxisAlias.Y:
-                        return "Axis4Inv";
+                        return "VR_Primary2DAxis_InvX_Right";
                     default:
                         return "";
                 }
@@ -115,9 +115,9 @@ public class InputAbstraction
             switch (Alias)
             {
                 case AxisAlias.X:
-                    return "Axis1";
+                    return "VR_Primary2DAxis_X_Left";
                 case AxisAlias.Y:
-                    return "Axis2";
+                    return "VR_Primary2DAxis_InvY_Left";
                 default:
                     return "";
             }
@@ -127,9 +127,9 @@ public class InputAbstraction
             switch (Alias)
             {
                 case AxisAlias.X:
-                    return "Axis4";
+                    return "VR_Primary2DAxis_X_Right";
                 case AxisAlias.Y:
-                    return "Axis5";
+                    return "VR_Primary2DAxis_InvY_Right";
                 default:
                     return "";
             }
