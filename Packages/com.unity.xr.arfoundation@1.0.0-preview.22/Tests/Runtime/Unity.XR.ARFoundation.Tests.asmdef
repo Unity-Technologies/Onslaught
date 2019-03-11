@@ -1,0 +1,11 @@
+{
+    "name": "Unity.XR.ARFoundation.Tests",
+    "references": [
+        "Unity.XR.ARFoundation"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}

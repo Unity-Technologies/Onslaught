@@ -1,0 +1,14 @@
+{
+    "name": "Unity.XR.ARFoundation.EditorTests",
+    "references": [
+        "Unity.XR.ARFoundation.Editor",
+        "Unity.XR.ARFoundation"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}
