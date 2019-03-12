@@ -24,7 +24,8 @@ public class SpawnInCube : MonoBehaviour
             // Transform local spawn position to cubeSpawnArea's rotation
             localSpawnPosition = ((((cubeSpawnArea.rotation * Quaternion.LookRotation(localSpawnPosition)) * Vector3.forward).normalized) * localSpawnPosition.magnitude) / 2;
 
-            Instantiate(prefabToSpawn, cubeSpawnArea.position + localSpawnPosition, cubeSpawnArea.rotation);
+            GameObject newSpawn = Instantiate(prefabToSpawn, cubeSpawnArea.position + localSpawnPosition, cubeSpawnArea.rotation);
+            newSpawn.transform.localScale = GameManager.instance.gameScale;
         }
     }
 }

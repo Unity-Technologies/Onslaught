@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8148734985888099454}
   - component: {fileID: 8148734985888099393}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,9 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b597812710d4740898b4fbfa36e88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabEnemyStandard: {fileID: 9118757406066216041, guid: f4548c267c2dde94d8743028dc1df4ac, type: 3}
-  prefabEnemyFast: {fileID: 9118757406066216041, guid: c5066245d6602a844adf602e8069971e, type: 3}
-  prefabEnemyTough: {fileID: 9118757406066216041, guid: dabba99764914a24397afdd6220e465e, type: 3}
   cubeSpawnArea: {fileID: 8148734986836621239}
 --- !u!1 &8148734986836621236
 GameObject:
@@ -59,7 +56,7 @@ GameObject:
   - component: {fileID: 8148734986836621239}
   - component: {fileID: 8148734986836621241}
   - component: {fileID: 8148734986836621238}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: SpawnExtents
   m_TagString: Untagged
   m_Icon: {fileID: 0}

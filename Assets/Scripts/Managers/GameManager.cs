@@ -9,6 +9,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public Transform scalingParent;
+    public Vector3 gameScale { get { return scalingParent.lossyScale; } }
+
+    public NavMeshSurface navMeshSurface;
+
     public GameObject playerPrefab;
     public Transform playerSpawn;
     public StartGameTrigger startGameTrigger;
@@ -37,6 +42,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+        
+        navMeshSurface.BuildNavMesh();
     }
 
     public bool StateTransitionTo(GameState targetState)
@@ -74,5 +82,11 @@ public class GameManager : MonoBehaviour
         WaveManager.instance.SpawnFirstWave();
         startGameTrigger.gameObject.SetActive(false);
         state = GameState.Gameplay;
+    }
+
+    // This can happen when the scene reloads
+    public void PlayerIsLost()
+    {
+        player.GetComponent<NavMeshAgent>().Warp(playerSpawn.position); // must warp so that the NavMesh is found by NavMeshAgent
     }
 }

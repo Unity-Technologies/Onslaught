@@ -34,6 +34,9 @@ public class MovementRaycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (m_nmAgent == null)
+            m_nmAgent = GameManager.instance.player.GetComponent<NavMeshAgent>();
+
         // Do Raycast
         RaycastHit hit = new RaycastHit();
         if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerMask))
@@ -50,6 +53,9 @@ public class MovementRaycast : MonoBehaviour
 
                 if (m_nmAgent != null)
                 {
+                    if (!m_nmAgent.isOnNavMesh)
+                        GameManager.instance.PlayerIsLost();
+
                     m_nmAgent.destination = hit.point;
                     if (m_audioSource != null)
                         m_audioSource.Play();

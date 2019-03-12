@@ -5,10 +5,9 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_Name: FeatheredPlaneMaterial
-  m_Shader: {fileID: 4800000, guid: 58c431416c0f26f459aa1a96cef1f092, type: 3}
+  m_Shader: {fileID: 4800000, guid: 38661a2f93c3bf34a8aeab0082c6ce64, type: 3}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -40,7 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c94766b832ada794dba2484f66b6cf6d, type: 3}
+        m_Texture: {fileID: 2800000, guid: cf0c720f1ba9b47e293f4b9bcfb2ecb4, type: 3}
         m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
