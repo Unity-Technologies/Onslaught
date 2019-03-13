@@ -42,9 +42,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
-
-        
-        navMeshSurface.BuildNavMesh();
     }
 
     public bool StateTransitionTo(GameState targetState)

@@ -2995,7 +2995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5829709698048938649}
-  - component: {fileID: 5829709698327885595}
+  - component: {fileID: 130592808}
   m_Layer: 0
   m_Name: GameInstance
   m_TagString: Untagged
@@ -3024,7 +3024,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5829709698327885595
+--- !u!114 &130592808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3042,7 +3042,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 1845
+    m_Bits: 4294967295
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -3972,7 +3972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scalingParent: {fileID: 5829709698048938649}
-  navMeshSurface: {fileID: 5829709698327885595}
+  navMeshSurface: {fileID: 130592808}
   playerPrefab: {fileID: 3957727919761243184, guid: 35bcc85dd18dd124ca9fa22ec983e62f,
     type: 3}
   playerSpawn: {fileID: 5829709697133114321}

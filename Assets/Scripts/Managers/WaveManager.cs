@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
-    public static WaveManager instance;
+    public static WaveManager instance = null;
 
     public GameObject spawnerContainer;
 
@@ -34,7 +34,7 @@ public class WaveManager : MonoBehaviour
 
     private WaveType waveType = WaveType.StandardOnly;
 
-    void Awake()
+    void OnEnable()
     {
         if (instance == null)
         {

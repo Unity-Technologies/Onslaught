@@ -478,4 +478,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PlacedPrefab: {fileID: 5829709698048938598, guid: 0cf41337facecbb4687b3dd6d5116649,
     type: 3}
-  cameraTransform: {fileID: 341921422}

@@ -535,6 +535,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 118472640}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &130592807 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5829709698048938598, guid: df88cda1f2411324c99de2f7a5aeb6d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 5829709698327885593}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &130592808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130592807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 1845
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.033333335
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 23800000, guid: def581c32b0a26747b7fcaeb022c494a, type: 2}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,10 +2227,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5829709698327885595, guid: df88cda1f2411324c99de2f7a5aeb6d7,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
+    - target: {fileID: 130592808, guid: df88cda1f2411324c99de2f7a5aeb6d7, type: 3}
+      propertyPath: m_Size.x
+      value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 130592808, guid: df88cda1f2411324c99de2f7a5aeb6d7, type: 3}
+      propertyPath: m_Size.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 130592808, guid: df88cda1f2411324c99de2f7a5aeb6d7, type: 3}
+      propertyPath: m_Size.z
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 130592808, guid: df88cda1f2411324c99de2f7a5aeb6d7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: df88cda1f2411324c99de2f7a5aeb6d7, type: 3}

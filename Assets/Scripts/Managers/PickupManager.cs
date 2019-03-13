@@ -16,7 +16,7 @@ public class PickupManager : MonoBehaviour
     private List<Pickup> m_Pickups;
 
     // Start is called before the first frame update
-    void Awake()
+    void OnEnable()
     {
         if (instance == null)
         {
