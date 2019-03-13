@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public WaveManager waveManager;
+    public PickupManager pickupManager;
+
     public Transform scalingParent;
     public Vector3 gameScale { get { return scalingParent.lossyScale; } }
 
@@ -32,6 +35,10 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        pickupManager.Init();
+        waveManager.Init();
+
+        Debug.Log("GameManager OnEnable");
         if (instance == null)
         {
             instance = this;

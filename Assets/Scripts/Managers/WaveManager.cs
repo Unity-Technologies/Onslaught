@@ -34,8 +34,9 @@ public class WaveManager : MonoBehaviour
 
     private WaveType waveType = WaveType.StandardOnly;
 
-    void OnEnable()
+    public void Init()
     {
+        Debug.Log("WaveManager Awake");
         if (instance == null)
         {
             instance = this;

@@ -3052,7 +3052,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.016666668
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 15482a53906728949b66dca03b7852cb, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 3047cefededceb54783aa49e1a2f32a5, type: 2}
 --- !u!1 &5829709698134471891
 GameObject:
   m_ObjectHideFlags: 0
@@ -3971,6 +3971,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23794b7c41e57c743bcdef42ca68d5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveManager: {fileID: 5829709698698944633}
+  pickupManager: {fileID: 5829709698698944634}
   scalingParent: {fileID: 5829709698048938649}
   navMeshSurface: {fileID: 836269584463189635}
   playerPrefab: {fileID: 3957727919761243184, guid: 35bcc85dd18dd124ca9fa22ec983e62f,

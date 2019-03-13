@@ -3042,7 +3042,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1845
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -3052,7 +3052,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: def581c32b0a26747b7fcaeb022c494a, type: 2}
 --- !u!1 &5829709698134471891
 GameObject:
   m_ObjectHideFlags: 0
@@ -3971,8 +3971,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23794b7c41e57c743bcdef42ca68d5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveManager: {fileID: 5829709698698944633}
+  pickupManager: {fileID: 5829709698698944634}
   scalingParent: {fileID: 5829709698048938649}
-  navMeshSurface: {fileID: 130592808}
+  navMeshSurface: {fileID: 130592808, guid: df88cda1f2411324c99de2f7a5aeb6d7, type: 3}
   playerPrefab: {fileID: 3957727919761243184, guid: 35bcc85dd18dd124ca9fa22ec983e62f,
     type: 3}
   playerSpawn: {fileID: 5829709697133114321}

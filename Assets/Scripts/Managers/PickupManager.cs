@@ -15,9 +15,9 @@ public class PickupManager : MonoBehaviour
     private List<Transform> m_SpawnLocations;
     private List<Pickup> m_Pickups;
 
-    // Start is called before the first frame update
-    void OnEnable()
+    public void Init()
     {
+        Debug.Log("PickupManager Awake");
         if (instance == null)
         {
             instance = this;
