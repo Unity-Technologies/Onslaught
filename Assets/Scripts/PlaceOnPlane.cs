@@ -53,11 +53,12 @@ public class PlaceOnPlane : MonoBehaviour
             {
                 spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, hitPose.rotation);
             }
-            else
-            {
-                spawnedObject.transform.position = hitPose.position;
-                spawnedObject.transform.rotation = hitPose.rotation;
-            }
+            // this breaks the navmesh. just disable it for now
+            //else
+            //{
+            //    spawnedObject.transform.position = hitPose.position;
+            //    spawnedObject.transform.rotation = hitPose.rotation;
+            //}
         }
     }
 

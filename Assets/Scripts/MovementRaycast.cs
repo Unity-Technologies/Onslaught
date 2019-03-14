@@ -18,7 +18,7 @@ public class MovementRaycast : MonoBehaviour
     private bool shouldNavigate = false;
 
     // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
         m_Transform = transform;
         m_nmAgent = GameManager.instance.player.GetComponent<NavMeshAgent>();
@@ -48,9 +48,13 @@ public class MovementRaycast : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Easy exit for AR before a game instance has been instantiated
+        if (GameManager.instance == null)
+            return;
+
         if (m_nmAgent == null)
             m_nmAgent = GameManager.instance.player.GetComponent<NavMeshAgent>();
-
+        
         // Do Raycast
         RaycastHit hit = new RaycastHit();
         if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerMask))
@@ -58,13 +62,13 @@ public class MovementRaycast : MonoBehaviour
             // Show navigation aid
             m_NavigationAidPrefab.SetActive(true);
             m_NavigationAidPrefab.transform.position = hit.point;
-
+            
             if (shouldNavigate)
             {
                 // Handle input
                 if (m_nmAgent == null)
                     m_nmAgent = GameManager.instance.player.GetComponent<NavMeshAgent>();
-
+                
                 if (m_nmAgent != null)
                 {
                     if (!m_nmAgent.isOnNavMesh)

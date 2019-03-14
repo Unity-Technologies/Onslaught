@@ -45,7 +45,7 @@ public class InputAbstraction : MonoBehaviour
     }
 
     private InputState previousInputState;
-    private InputState newARInput;
+    private InputState newARInputState;
     private bool isAR = false;
     private bool newARFrame = false;
 
@@ -53,11 +53,26 @@ public class InputAbstraction : MonoBehaviour
     {
         InputState newInputState = new InputState();
 
-        newInputState.fire = FireControlActive(PreferedHand());
-        newInputState.nav = GetButtonDown(ButtonAlias.AXIS_CLICK, PreferedHand());
-        newInputState.xy = new Vector2(GetAxis(AxisAlias.X, PreferedHand()), GetAxis(AxisAlias.Y, PreferedHand()));
-        newInputState.xyIgnoreSDKLeftHand = new Vector2(GetAxis(AxisAlias.X, Handedness.LEFT, true), GetAxis(AxisAlias.Y, Handedness.LEFT, true));
-        newInputState.xyIgnoreSDKRightHand = new Vector2(GetAxis(AxisAlias.X, Handedness.RIGHT, true), GetAxis(AxisAlias.Y, Handedness.RIGHT, true));
+        if (!isAR) {
+            newInputState.fire = FireControlActive(PreferedHand());
+            newInputState.nav = GetButtonDown(ButtonAlias.AXIS_CLICK, PreferedHand());
+            newInputState.xy = new Vector2(GetAxis(AxisAlias.X, PreferedHand()), GetAxis(AxisAlias.Y, PreferedHand()));
+            newInputState.xyIgnoreSDKLeftHand = new Vector2(GetAxis(AxisAlias.X, Handedness.LEFT, true), GetAxis(AxisAlias.Y, Handedness.LEFT, true));
+            newInputState.xyIgnoreSDKRightHand = new Vector2(GetAxis(AxisAlias.X, Handedness.RIGHT, true), GetAxis(AxisAlias.Y, Handedness.RIGHT, true));
+        }
+        else // isAR
+        {
+            newInputState = newARInputState;
+
+            if (newARInputState.nav)
+            {
+                newARInputState.nav = false;
+            }
+            else
+            {
+                newARFrame = false;
+            }
+        }
 
         if (newInputState.fire != previousInputState.fire && newInputState.fire)
             FireActive?.Invoke();
@@ -73,6 +88,14 @@ public class InputAbstraction : MonoBehaviour
         }
 
         previousInputState = newInputState;
+    }
+
+    public void ARSetNav()
+    {
+        isAR = true;
+
+        newARInputState.nav = true;
+        newARFrame = true;
     }
 
     private bool FireControlActive(Handedness hand)

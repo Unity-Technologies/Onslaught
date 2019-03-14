@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public WaveManager waveManager;
     public PickupManager pickupManager;
     public InputAbstraction inputAbstraction;
+    private MovementRaycast movementRaycast;
 
     public Transform scalingParent;
     public Vector3 gameScale { get { return scalingParent.lossyScale; } }
@@ -43,6 +44,8 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             StateTransitionTo(GameState.Menu);
+            movementRaycast = GameObject.FindGameObjectWithTag("MovementRaycaster").GetComponent<MovementRaycast>();
+            movementRaycast.Init();
         }
         else
         {
