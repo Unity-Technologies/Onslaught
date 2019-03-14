@@ -15,6 +15,8 @@ public class MovementRaycast : MonoBehaviour
     private Transform m_Transform = null;
     private AudioSource m_audioSource = null;
 
+    private bool shouldNavigate = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,21 @@ public class MovementRaycast : MonoBehaviour
         m_NavigationAidPrefab.SetActive(false);
     }
 
+    private void OnEnable()
+    {
+        InputAbstraction.NavActive += OnNavActive;
+    }
+
+    private void OnDisable()
+    {
+        InputAbstraction.NavActive -= OnNavActive;
+    }
+
+    void OnNavActive()
+    {
+        shouldNavigate = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -45,9 +62,9 @@ public class MovementRaycast : MonoBehaviour
             m_NavigationAidPrefab.SetActive(true);
             m_NavigationAidPrefab.transform.position = hit.point;
 
-            // Handle input
-            if (InputAbstraction.GetButtonDown(InputAbstraction.ButtonAlias.AXIS_CLICK, InputAbstraction.PreferedHand()))
+            if (shouldNavigate)
             {
+                // Handle input
                 if (m_nmAgent == null)
                     m_nmAgent = GameManager.instance.player.GetComponent<NavMeshAgent>();
 
@@ -66,5 +83,9 @@ public class MovementRaycast : MonoBehaviour
         {
             m_NavigationAidPrefab.SetActive(false);
         }
+
+        // Even if we don't have a valid navigation event, we must unset
+        // this flag so that we don't have weird behavior
+        shouldNavigate = false;
     }
 }

@@ -19,6 +19,30 @@ public class FireBullet : MonoBehaviour
     private AudioSource m_audioSource = null;
     private int m_NumSpecialAmmo = 0;
 
+    private bool isFiring = false;
+
+    private void OnEnable()
+    {
+        InputAbstraction.FireActive += OnFireActive;
+        InputAbstraction.FireInactive += OnFireInactive;
+    }
+
+    private void OnDisable()
+    {
+        InputAbstraction.FireActive -= OnFireActive;
+        InputAbstraction.FireInactive -= OnFireInactive;
+    }
+
+    void OnFireActive()
+    {
+        isFiring = true;
+    }
+
+    void OnFireInactive()
+    {
+        isFiring = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +60,7 @@ public class FireBullet : MonoBehaviour
         if (m_Timer > 0)
             m_Timer -= Time.deltaTime;
 
-        if (m_Timer <= 0 && InputAbstraction.FireControlActive(InputAbstraction.PreferedHand()))
+        if (m_Timer <= 0 && isFiring)
         {
             if (m_NumSpecialAmmo > 0 && specialBulletPrefab != null)
             {

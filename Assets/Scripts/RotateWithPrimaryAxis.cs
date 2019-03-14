@@ -12,19 +12,28 @@ public class RotateWithPrimaryAxis : MonoBehaviour
         m_Transform = GetComponent<Transform>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        float degrees = GetDegreeRotation();
+        InputAbstraction.AxisChanged += OnAxisChanged;
+    }
+
+    private void OnDisable()
+    {
+        InputAbstraction.AxisChanged -= OnAxisChanged;
+    }
+    
+    void OnAxisChanged(Vector2 value)
+    {
+        float degrees = GetDegreeRotation(value);
         if (degrees > 0)
             m_Transform.rotation = Quaternion.Euler(0f, degrees, 0f);
     }
 
-    float GetDegreeRotation()
+    float GetDegreeRotation(Vector2 value)
     {
         float degrees = 0f;
-        float X = InputAbstraction.GetAxis(InputAbstraction.AxisAlias.X, InputAbstraction.PreferedHand());
-        float Y = InputAbstraction.GetAxis(InputAbstraction.AxisAlias.Y, InputAbstraction.PreferedHand());
+        float X = value.x;
+        float Y = value.y;
 
         bool XIsNegative = X < 0 ? true : false;
         bool YIsNegative = Y < 0 ? true : false;

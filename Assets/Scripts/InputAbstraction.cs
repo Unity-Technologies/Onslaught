@@ -4,7 +4,7 @@ using UnityEngine;
 
 using UnityEngine.XR;
 
-public class InputAbstraction
+public class InputAbstraction : MonoBehaviour
 {
     public enum Handedness
     {
@@ -26,7 +26,56 @@ public class InputAbstraction
 
     private static float m_FireTriggerThreshold = 0.75f;
 
-    public static bool FireControlActive(Handedness hand)
+    public delegate void InputBoolEventHandler();
+    public delegate void InputVector2EventHandler(Vector2 value);
+    public static event InputBoolEventHandler FireActive;
+    public static event InputBoolEventHandler FireInactive;
+    public static event InputBoolEventHandler NavActive;
+    public static event InputVector2EventHandler AxisChanged;
+    public static event InputVector2EventHandler AxisChangedIgnoreSDKLeft;
+    public static event InputVector2EventHandler AxisChangedIgnoreSDKRight;
+
+    struct InputState
+    {
+        public Vector2 xy;
+        public Vector2 xyIgnoreSDKLeftHand;
+        public Vector2 xyIgnoreSDKRightHand;
+        public bool fire;
+        public bool nav;
+    }
+
+    private InputState previousInputState;
+    private InputState newARInput;
+    private bool isAR = false;
+    private bool newARFrame = false;
+
+    void Update()
+    {
+        InputState newInputState = new InputState();
+
+        newInputState.fire = FireControlActive(PreferedHand());
+        newInputState.nav = GetButtonDown(ButtonAlias.AXIS_CLICK, PreferedHand());
+        newInputState.xy = new Vector2(GetAxis(AxisAlias.X, PreferedHand()), GetAxis(AxisAlias.Y, PreferedHand()));
+        newInputState.xyIgnoreSDKLeftHand = new Vector2(GetAxis(AxisAlias.X, Handedness.LEFT, true), GetAxis(AxisAlias.Y, Handedness.LEFT, true));
+        newInputState.xyIgnoreSDKRightHand = new Vector2(GetAxis(AxisAlias.X, Handedness.RIGHT, true), GetAxis(AxisAlias.Y, Handedness.RIGHT, true));
+
+        if (newInputState.fire != previousInputState.fire && newInputState.fire)
+            FireActive?.Invoke();
+        if (newInputState.fire != previousInputState.fire && !newInputState.fire)
+            FireInactive?.Invoke();
+        if (newInputState.nav != previousInputState.nav && newInputState.nav)
+            NavActive?.Invoke();
+        if (newInputState.xy != previousInputState.xy)
+        {
+            AxisChanged?.Invoke(newInputState.xy);
+            AxisChangedIgnoreSDKLeft?.Invoke(newInputState.xyIgnoreSDKLeftHand);
+            AxisChangedIgnoreSDKRight?.Invoke(newInputState.xyIgnoreSDKRightHand);
+        }
+
+        previousInputState = newInputState;
+    }
+
+    private static bool FireControlActive(Handedness hand)
     {
         if (XRSettings.loadedDeviceName == "daydream")
         {
@@ -44,7 +93,7 @@ public class InputAbstraction
         }
     }
 
-    public static string AliasToControlString(ButtonAlias Alias, Handedness hand)
+    private static string AliasToControlString(ButtonAlias Alias, Handedness hand)
     {
         if (hand == Handedness.LEFT)
         {
@@ -72,7 +121,7 @@ public class InputAbstraction
         }
     }
 
-    public static string AliasToControlStringSDKSpecific(AxisAlias Alias, Handedness Hand)
+    private static string AliasToControlStringSDKSpecific(AxisAlias Alias, Handedness Hand)
     {
         // For daydream, you hold the controller sideways.
         if (XRSettings.loadedDeviceName == "daydream")
@@ -108,7 +157,7 @@ public class InputAbstraction
         }
     }
 
-    public static string AliasToControlString(AxisAlias Alias, Handedness Hand)
+    private static string AliasToControlString(AxisAlias Alias, Handedness Hand)
     {
         if (Hand == Handedness.LEFT)
         {
@@ -136,22 +185,22 @@ public class InputAbstraction
         }
     }
 
-    public static bool GetButton(ButtonAlias alias, Handedness hand)
+    private static bool GetButton(ButtonAlias alias, Handedness hand)
     {
         return Input.GetButton(AliasToControlString(alias, hand));
     }
 
-    public static bool GetButtonDown(ButtonAlias alias, Handedness hand)
+    private static bool GetButtonDown(ButtonAlias alias, Handedness hand)
     {
         return Input.GetButtonDown(AliasToControlString(alias, hand));
     }
 
-    public static bool GetButtonUp(ButtonAlias alias, Handedness hand)
+    private static bool GetButtonUp(ButtonAlias alias, Handedness hand)
     {
         return Input.GetButtonUp(AliasToControlString(alias, hand));
     }
 
-    public static float GetAxis(AxisAlias alias, Handedness hand, bool ignoreSDKSpecific = false)
+    private static float GetAxis(AxisAlias alias, Handedness hand, bool ignoreSDKSpecific = false)
     {
         if (ignoreSDKSpecific)
             return Input.GetAxis(AliasToControlString(alias, hand));
@@ -159,7 +208,7 @@ public class InputAbstraction
             return Input.GetAxis(AliasToControlStringSDKSpecific(alias, hand));
     }
 
-    public static Handedness PreferedHand()
+    private static Handedness PreferedHand()
     {
         List<XRNodeState> nodeStates = new List<XRNodeState>();
         InputTracking.GetNodeStates(nodeStates);
