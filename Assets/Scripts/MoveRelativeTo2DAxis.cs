@@ -20,26 +20,23 @@ public class MoveRelativeTo2DAxis : MonoBehaviour
         m_Transform = this.transform;
         amplitudeMaxX = Mathf.Abs(amplitudeMaxX);
         amplitudeMaxY = Mathf.Abs(amplitudeMaxY);
+
+        if (!ignoreSDK)
+            GameManager.instance.inputAbstraction.AxisChanged += OnAxisChanged;
+        else if (hand == InputAbstraction.Handedness.LEFT)
+            GameManager.instance.inputAbstraction.AxisChangedIgnoreSDKLeft += OnAxisChanged;
+        else if (hand == InputAbstraction.Handedness.RIGHT)
+            GameManager.instance.inputAbstraction.AxisChangedIgnoreSDKRight += OnAxisChanged;
     }
 
-    private void OnEnable()
+    private void OnDestroy()
     {
         if (!ignoreSDK)
-            InputAbstraction.AxisChanged += OnAxisChanged;
+            GameManager.instance.inputAbstraction.AxisChanged -= OnAxisChanged;
         else if (hand == InputAbstraction.Handedness.LEFT)
-            InputAbstraction.AxisChangedIgnoreSDKLeft += OnAxisChanged;
+            GameManager.instance.inputAbstraction.AxisChangedIgnoreSDKLeft -= OnAxisChanged;
         else if (hand == InputAbstraction.Handedness.RIGHT)
-            InputAbstraction.AxisChangedIgnoreSDKRight += OnAxisChanged;
-    }
-
-    private void OnDisable()
-    {
-        if (!ignoreSDK)
-            InputAbstraction.AxisChanged -= OnAxisChanged;
-        else if (hand == InputAbstraction.Handedness.LEFT)
-            InputAbstraction.AxisChangedIgnoreSDKLeft -= OnAxisChanged;
-        else if (hand == InputAbstraction.Handedness.RIGHT)
-            InputAbstraction.AxisChangedIgnoreSDKRight -= OnAxisChanged;
+            GameManager.instance.inputAbstraction.AxisChangedIgnoreSDKRight -= OnAxisChanged;
     }
 
     void OnAxisChanged(Vector2 value)

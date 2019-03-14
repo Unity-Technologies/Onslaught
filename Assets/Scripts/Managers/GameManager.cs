@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public WaveManager waveManager;
     public PickupManager pickupManager;
+    public InputAbstraction inputAbstraction;
 
     public Transform scalingParent;
     public Vector3 gameScale { get { return scalingParent.lossyScale; } }
@@ -37,12 +38,10 @@ public class GameManager : MonoBehaviour
     {
         pickupManager.Init();
         waveManager.Init();
-
-        Debug.Log("GameManager OnEnable");
+        
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
             StateTransitionTo(GameState.Menu);
         }
         else

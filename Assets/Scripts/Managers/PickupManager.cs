@@ -17,11 +17,9 @@ public class PickupManager : MonoBehaviour
 
     public void Init()
     {
-        Debug.Log("PickupManager Awake");
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
 
             m_SpawnLocations = new List<Transform>();
             foreach (Transform child in pickupSpawnContainer)

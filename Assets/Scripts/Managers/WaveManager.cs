@@ -36,11 +36,9 @@ public class WaveManager : MonoBehaviour
 
     public void Init()
     {
-        Debug.Log("WaveManager Awake");
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(this);
             m_Spawners = spawnerContainer.GetComponentsInChildren<SpawnInCube>();
             m_WaveEnemies = new List<WaveEnemy>();
             Reset();

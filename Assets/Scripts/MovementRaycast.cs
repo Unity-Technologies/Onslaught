@@ -31,16 +31,13 @@ public class MovementRaycast : MonoBehaviour
 
         m_NavigationAidPrefab = Instantiate(navigationAidPrefab);
         m_NavigationAidPrefab.SetActive(false);
-    }
 
-    private void OnEnable()
-    {
-        InputAbstraction.NavActive += OnNavActive;
+        GameManager.instance.inputAbstraction.NavActive += OnNavActive;
     }
-
-    private void OnDisable()
+    
+    private void OnDestroy()
     {
-        InputAbstraction.NavActive -= OnNavActive;
+        GameManager.instance.inputAbstraction.NavActive -= OnNavActive;
     }
 
     void OnNavActive()

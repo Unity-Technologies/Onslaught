@@ -3938,6 +3938,7 @@ GameObject:
   - component: {fileID: 5829709698698944632}
   - component: {fileID: 5829709698698944633}
   - component: {fileID: 5829709698698944634}
+  - component: {fileID: 3514439098543483864}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -3973,6 +3974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveManager: {fileID: 5829709698698944633}
   pickupManager: {fileID: 5829709698698944634}
+  inputAbstraction: {fileID: 3514439098543483864}
   scalingParent: {fileID: 5829709698048938649}
   navMeshSurface: {fileID: 836269584463189635}
   playerPrefab: {fileID: 3957727919761243184, guid: 35bcc85dd18dd124ca9fa22ec983e62f,
@@ -4017,6 +4019,18 @@ MonoBehaviour:
     type: 3}
   weaponPickup: {fileID: 5853639297968742919, guid: 49ffcdd1835f145479400631fe728cfb,
     type: 3}
+--- !u!114 &3514439098543483864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5829709698698944582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ccc311fc7d95c845a4184df78a25116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5829709698736329971
 GameObject:
   m_ObjectHideFlags: 0

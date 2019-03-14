@@ -24,16 +24,16 @@ public class InputAbstraction : MonoBehaviour
         Y
     }
 
-    private static float m_FireTriggerThreshold = 0.75f;
+    private float m_FireTriggerThreshold = 0.75f;
 
     public delegate void InputBoolEventHandler();
     public delegate void InputVector2EventHandler(Vector2 value);
-    public static event InputBoolEventHandler FireActive;
-    public static event InputBoolEventHandler FireInactive;
-    public static event InputBoolEventHandler NavActive;
-    public static event InputVector2EventHandler AxisChanged;
-    public static event InputVector2EventHandler AxisChangedIgnoreSDKLeft;
-    public static event InputVector2EventHandler AxisChangedIgnoreSDKRight;
+    public event InputBoolEventHandler FireActive;
+    public event InputBoolEventHandler FireInactive;
+    public event InputBoolEventHandler NavActive;
+    public event InputVector2EventHandler AxisChanged;
+    public event InputVector2EventHandler AxisChangedIgnoreSDKLeft;
+    public event InputVector2EventHandler AxisChangedIgnoreSDKRight;
 
     struct InputState
     {
@@ -75,7 +75,7 @@ public class InputAbstraction : MonoBehaviour
         previousInputState = newInputState;
     }
 
-    private static bool FireControlActive(Handedness hand)
+    private bool FireControlActive(Handedness hand)
     {
         if (XRSettings.loadedDeviceName == "daydream")
         {
@@ -93,7 +93,7 @@ public class InputAbstraction : MonoBehaviour
         }
     }
 
-    private static string AliasToControlString(ButtonAlias Alias, Handedness hand)
+    private string AliasToControlString(ButtonAlias Alias, Handedness hand)
     {
         if (hand == Handedness.LEFT)
         {
@@ -121,7 +121,7 @@ public class InputAbstraction : MonoBehaviour
         }
     }
 
-    private static string AliasToControlStringSDKSpecific(AxisAlias Alias, Handedness Hand)
+    private string AliasToControlStringSDKSpecific(AxisAlias Alias, Handedness Hand)
     {
         // For daydream, you hold the controller sideways.
         if (XRSettings.loadedDeviceName == "daydream")
@@ -157,7 +157,7 @@ public class InputAbstraction : MonoBehaviour
         }
     }
 
-    private static string AliasToControlString(AxisAlias Alias, Handedness Hand)
+    private string AliasToControlString(AxisAlias Alias, Handedness Hand)
     {
         if (Hand == Handedness.LEFT)
         {
@@ -185,22 +185,22 @@ public class InputAbstraction : MonoBehaviour
         }
     }
 
-    private static bool GetButton(ButtonAlias alias, Handedness hand)
+    private bool GetButton(ButtonAlias alias, Handedness hand)
     {
         return Input.GetButton(AliasToControlString(alias, hand));
     }
 
-    private static bool GetButtonDown(ButtonAlias alias, Handedness hand)
+    private bool GetButtonDown(ButtonAlias alias, Handedness hand)
     {
         return Input.GetButtonDown(AliasToControlString(alias, hand));
     }
 
-    private static bool GetButtonUp(ButtonAlias alias, Handedness hand)
+    private bool GetButtonUp(ButtonAlias alias, Handedness hand)
     {
         return Input.GetButtonUp(AliasToControlString(alias, hand));
     }
 
-    private static float GetAxis(AxisAlias alias, Handedness hand, bool ignoreSDKSpecific = false)
+    private float GetAxis(AxisAlias alias, Handedness hand, bool ignoreSDKSpecific = false)
     {
         if (ignoreSDKSpecific)
             return Input.GetAxis(AliasToControlString(alias, hand));
@@ -208,7 +208,7 @@ public class InputAbstraction : MonoBehaviour
             return Input.GetAxis(AliasToControlStringSDKSpecific(alias, hand));
     }
 
-    private static Handedness PreferedHand()
+    private Handedness PreferedHand()
     {
         List<XRNodeState> nodeStates = new List<XRNodeState>();
         InputTracking.GetNodeStates(nodeStates);

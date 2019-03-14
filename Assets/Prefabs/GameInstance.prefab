@@ -3974,6 +3974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveManager: {fileID: 5829709698698944633}
   pickupManager: {fileID: 5829709698698944634}
+  inputAbstraction: {fileID: 5829709698327885595}
   scalingParent: {fileID: 5829709698048938649}
   navMeshSurface: {fileID: 0}
   playerPrefab: {fileID: 3957727919761243184, guid: 35bcc85dd18dd124ca9fa22ec983e62f,

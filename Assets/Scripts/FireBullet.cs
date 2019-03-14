@@ -21,16 +21,10 @@ public class FireBullet : MonoBehaviour
 
     private bool isFiring = false;
 
-    private void OnEnable()
+    private void OnDestroy()
     {
-        InputAbstraction.FireActive += OnFireActive;
-        InputAbstraction.FireInactive += OnFireInactive;
-    }
-
-    private void OnDisable()
-    {
-        InputAbstraction.FireActive -= OnFireActive;
-        InputAbstraction.FireInactive -= OnFireInactive;
+        GameManager.instance.inputAbstraction.FireActive -= OnFireActive;
+        GameManager.instance.inputAbstraction.FireInactive -= OnFireInactive;
     }
 
     void OnFireActive()
@@ -52,6 +46,9 @@ public class FireBullet : MonoBehaviour
             m_audioSource = gameObject.AddComponent<AudioSource>();
             m_audioSource.clip = fireClip;
         }
+
+        GameManager.instance.inputAbstraction.FireActive += OnFireActive;
+        GameManager.instance.inputAbstraction.FireInactive += OnFireInactive;
     }
 
     // Update is called once per frame

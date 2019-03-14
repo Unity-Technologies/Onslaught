@@ -10,16 +10,13 @@ public class RotateWithPrimaryAxis : MonoBehaviour
     void Start()
     {
         m_Transform = GetComponent<Transform>();
+
+        GameManager.instance.inputAbstraction.AxisChanged += OnAxisChanged;
     }
 
-    private void OnEnable()
+    private void OnDestroy()
     {
-        InputAbstraction.AxisChanged += OnAxisChanged;
-    }
-
-    private void OnDisable()
-    {
-        InputAbstraction.AxisChanged -= OnAxisChanged;
+        GameManager.instance.inputAbstraction.AxisChanged -= OnAxisChanged;
     }
     
     void OnAxisChanged(Vector2 value)
