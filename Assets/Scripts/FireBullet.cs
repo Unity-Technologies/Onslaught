@@ -61,7 +61,8 @@ public class FireBullet : MonoBehaviour
         {
             if (m_NumSpecialAmmo > 0 && specialBulletPrefab != null)
             {
-                Instantiate(specialBulletPrefab, m_Transform.position, m_Transform.rotation);
+                GameObject bullet = Instantiate(specialBulletPrefab, m_Transform.position, m_Transform.rotation);
+                bullet.transform.localScale = GameManager.instance.gameScale;
                 if (m_audioSource != null)
                     m_audioSource.PlayOneShot(specialAmmoFireClip);
                 HapticAbstraction.BuzzBothHands(hapticTime);
@@ -70,7 +71,8 @@ public class FireBullet : MonoBehaviour
             }
             else if (bulletPrefab != null)
             {
-                Instantiate(bulletPrefab, m_Transform.position, m_Transform.rotation);
+                GameObject bullet = Instantiate(bulletPrefab, m_Transform.position, m_Transform.rotation);
+                bullet.transform.localScale = GameManager.instance.gameScale;
                 if (m_audioSource != null)
                     m_audioSource.Play();
                 HapticAbstraction.BuzzBothHands(hapticTime);

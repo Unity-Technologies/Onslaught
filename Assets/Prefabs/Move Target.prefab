@@ -117,6 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 119927094923507976}
+  - component: {fileID: 258896523952217857}
   m_Layer: 2
   m_Name: Move Target
   m_TagString: Untagged
@@ -140,6 +141,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &258896523952217857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6808804555225004090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba0494944976b9e4c8b7768db24dce84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Particles: {fileID: 1840388305604538263}
 --- !u!1 &7046123941276203366
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,10 +193,11 @@ ParticleSystem:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7046123941276203366}
-  serializedVersion: 5
+  serializedVersion: 6
   lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
+  cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
@@ -1499,6 +1514,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
   UVModule:
+    serializedVersion: 2
     enabled: 0
     mode: 0
     timeMode: 0
@@ -1616,7 +1632,7 @@ ParticleSystem:
     rowIndex: 0
     cycles: 1
     uvChannelMask: -1
-    randomRow: 1
+    rowMode: 1
     sprites:
     - sprite: {fileID: 0}
     flipU: 0
@@ -3841,7 +3857,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 0
     subEmitters:
-    - serializedVersion: 2
+    - serializedVersion: 3
       emitter: {fileID: 0}
       type: 0
       properties: 0
@@ -4029,6 +4045,7 @@ ParticleSystem:
     inheritParticleColor: 1
     generateLightingData: 0
     splitSubEmitterRibbons: 0
+    attachRibbonsToTransform: 0
     colorOverLifetime:
       serializedVersion: 2
       minMaxState: 0
@@ -4777,7 +4794,7 @@ ParticleSystem:
 --- !u!199 &1020264178784160088
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

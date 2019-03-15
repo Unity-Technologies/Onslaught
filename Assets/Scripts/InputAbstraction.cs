@@ -98,6 +98,30 @@ public class InputAbstraction : MonoBehaviour
         newARFrame = true;
     }
 
+    public void ARSetFireDirection(Vector2 direction)
+    {
+        isAR = true;
+
+        newARInputState.xy = direction;
+        newARFrame = true;
+    }
+
+    public void ARSetFire()
+    {
+        isAR = true;
+
+        newARInputState.fire = true;
+        newARFrame = true;
+    }
+
+    public void ARUnsetFire()
+    {
+        isAR = true;
+
+        newARInputState.fire = false;
+        newARFrame = true;
+    }
+
     private bool FireControlActive(Handedness hand)
     {
         if (XRSettings.loadedDeviceName == "daydream")

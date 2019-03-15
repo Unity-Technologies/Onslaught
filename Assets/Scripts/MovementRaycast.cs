@@ -30,6 +30,7 @@ public class MovementRaycast : MonoBehaviour
         }
 
         m_NavigationAidPrefab = Instantiate(navigationAidPrefab);
+        m_NavigationAidPrefab.transform.localScale = GameManager.instance.gameScale;
         m_NavigationAidPrefab.SetActive(false);
 
         GameManager.instance.inputAbstraction.NavActive += OnNavActive;

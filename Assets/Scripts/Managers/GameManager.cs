@@ -79,8 +79,10 @@ public class GameManager : MonoBehaviour
         state = GameState.Menu;
         startGameTrigger.gameObject.SetActive(true);
         player = Instantiate(playerPrefab);
-        player.GetComponent<NavMeshAgent>().Warp(playerSpawn.position); // must warp so that the NavMesh is found by NavMeshAgent
+        player.transform.localScale = GameManager.instance.gameScale;
         player.GetComponent<Player>().SetHealthDisplayText(healthDisplayText);
+        
+        player.GetComponent<NavMeshAgent>().Warp(playerSpawn.position); // must warp so that the NavMesh is found by NavMeshAgent
     }
 
     private void TransitionToGameplayState()
@@ -93,6 +95,13 @@ public class GameManager : MonoBehaviour
     // This can happen when the scene reloads
     public void PlayerIsLost()
     {
-        player.GetComponent<NavMeshAgent>().Warp(playerSpawn.position); // must warp so that the NavMesh is found by NavMeshAgent
+        Debug.Log("Player is lost");
+        NavMeshHit closestPosition;
+        if (!NavMesh.SamplePosition(playerSpawn.position, out closestPosition, 1, ~0))
+            Debug.Log("NavMesh.SamplePosition failed to find a position");
+        else
+            Debug.Log("SamplePosition found position = " + closestPosition.position);
+        player.GetComponent<NavMeshAgent>().Warp(closestPosition.position); // must warp so that the NavMesh is found by NavMeshAgent
+        Debug.Log("hopefully now player is found");
     }
 }
