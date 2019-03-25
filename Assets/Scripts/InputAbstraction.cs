@@ -60,7 +60,7 @@ public class InputAbstraction : MonoBehaviour
             newInputState.xyIgnoreSDKLeftHand = new Vector2(GetAxis(AxisAlias.X, Handedness.LEFT, true), GetAxis(AxisAlias.Y, Handedness.LEFT, true));
             newInputState.xyIgnoreSDKRightHand = new Vector2(GetAxis(AxisAlias.X, Handedness.RIGHT, true), GetAxis(AxisAlias.Y, Handedness.RIGHT, true));
         }
-        else // isAR
+        else if (newARFrame)// isAR
         {
             newInputState = newARInputState;
 
