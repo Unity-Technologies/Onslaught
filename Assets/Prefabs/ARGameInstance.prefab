@@ -3052,7 +3052,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.016666668
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 3047cefededceb54783aa49e1a2f32a5, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 2bb2b6873508c664d92a344dc6496234, type: 2}
 --- !u!1 &5829709698134471891
 GameObject:
   m_ObjectHideFlags: 0
@@ -3977,7 +3977,7 @@ MonoBehaviour:
   inputAbstraction: {fileID: 3514439098543483864}
   scalingParent: {fileID: 5829709698048938649}
   navMeshSurface: {fileID: 836269584463189635}
-  playerPrefab: {fileID: 3957727919761243184, guid: 35bcc85dd18dd124ca9fa22ec983e62f,
+  playerPrefab: {fileID: 3957727919761243184, guid: eab8a5865f8b43e42b4b48228f58631c,
     type: 3}
   playerSpawn: {fileID: 5829709697133114321}
   startGameTrigger: {fileID: 5829709697510914555}

@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         if (!NavMesh.SamplePosition(playerSpawn.position, out closestPosition, 1, ~0))
             Debug.Log("NavMesh.SamplePosition failed to find a position");
         else
-            Debug.Log("SamplePosition found position = " + closestPosition.position);
+            Debug.Log("SamplePosition found position = (" + closestPosition.position.x + ", " + closestPosition.position.y + ", " + closestPosition.position.z + ")");
         player.GetComponent<NavMeshAgent>().Warp(closestPosition.position); // must warp so that the NavMesh is found by NavMeshAgent
         Debug.Log("hopefully now player is found");
     }
