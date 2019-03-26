@@ -25,6 +25,9 @@ public class PlaceOnPlane : MonoBehaviour
         get { return m_PlacedPrefab; }
         set { m_PlacedPrefab = value; }
     }
+
+    public GameObject setupUI;
+    public GameObject gameplayUI;
     
     /// <summary>
     /// The object instantiated as a result of a successful raycast intersection with a plane.
@@ -34,6 +37,9 @@ public class PlaceOnPlane : MonoBehaviour
     void Awake()
     {
         m_SessionOrigin = GetComponent<ARSessionOrigin>();
+
+        setupUI.SetActive(true);
+        gameplayUI.SetActive(false);
     }
 
     void Update()
@@ -52,8 +58,12 @@ public class PlaceOnPlane : MonoBehaviour
             if (spawnedObject == null)
             {
                 spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, hitPose.rotation);
+
+                setupUI.SetActive(false);
+                gameplayUI.SetActive(true);
             }
-            // this breaks the navmesh. just disable it for now
+
+            // this breaks the navmesh(?) just disable it for now. place once and done
             //else
             //{
             //    spawnedObject.transform.position = hitPose.position;
