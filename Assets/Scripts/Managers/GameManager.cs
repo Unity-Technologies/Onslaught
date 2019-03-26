@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public bool isAR = false;
-
     public WaveManager waveManager;
     public PickupManager pickupManager;
     public InputAbstraction inputAbstraction;
