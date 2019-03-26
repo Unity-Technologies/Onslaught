@@ -3972,6 +3972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23794b7c41e57c743bcdef42ca68d5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAR: 0
   waveManager: {fileID: 5829709698698944633}
   pickupManager: {fileID: 5829709698698944634}
   inputAbstraction: {fileID: 3514439098543483864}
@@ -3996,11 +3997,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnerContainer: {fileID: 5829709697585467067}
   waveDisplayText: {fileID: 1529996168}
-  prefabEnemyStandard: {fileID: 9118757406066216041, guid: f4548c267c2dde94d8743028dc1df4ac,
+  prefabEnemyStandard: {fileID: 9118757406066216041, guid: 08b894763df7d994bbaa807da767633d,
     type: 3}
-  prefabEnemyFast: {fileID: 9118757406066216041, guid: c5066245d6602a844adf602e8069971e,
+  prefabEnemyFast: {fileID: 9118757406066216041, guid: 8dd59f30e58b6f94bb086f58c98cf03c,
     type: 3}
-  prefabEnemyTough: {fileID: 9118757406066216041, guid: dabba99764914a24397afdd6220e465e,
+  prefabEnemyTough: {fileID: 9118757406066216041, guid: 0fa96455136e8bd48aa9b62f8790999c,
     type: 3}
 --- !u!114 &5829709698698944634
 MonoBehaviour:

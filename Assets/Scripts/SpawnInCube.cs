@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.AI;
+
 public class SpawnInCube : MonoBehaviour
 {
     [Tooltip("This should be the transform of a cube.  The scale of the cube will inform where the spawnables spawn.")]
@@ -16,9 +18,9 @@ public class SpawnInCube : MonoBehaviour
         for (int i = 0; i < numberToSpawn; i++)
         {
             Vector3 localSpawnPosition = new Vector3(
-                Random.Range(-cubeSpawnArea.localScale.x, cubeSpawnArea.localScale.x),
-                Random.Range(-cubeSpawnArea.localScale.y, cubeSpawnArea.localScale.y),
-                Random.Range(-cubeSpawnArea.localScale.z, cubeSpawnArea.localScale.z)
+                Random.Range(-cubeSpawnArea.lossyScale.x, cubeSpawnArea.lossyScale.x),
+                Random.Range(-cubeSpawnArea.lossyScale.y, cubeSpawnArea.lossyScale.y),
+                Random.Range(-cubeSpawnArea.lossyScale.z, cubeSpawnArea.lossyScale.z)
             );
 
             // Transform local spawn position to cubeSpawnArea's rotation
@@ -26,6 +28,7 @@ public class SpawnInCube : MonoBehaviour
 
             GameObject newSpawn = Instantiate(prefabToSpawn, cubeSpawnArea.position + localSpawnPosition, cubeSpawnArea.rotation);
             newSpawn.transform.localScale = GameManager.instance.gameScale;
+            newSpawn.GetComponent<NavMeshAgent>().speed *= GameManager.instance.gameScale.x;
         }
     }
 }

@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public bool isAR = false;
+
     public WaveManager waveManager;
     public PickupManager pickupManager;
     public InputAbstraction inputAbstraction;
@@ -81,6 +83,7 @@ public class GameManager : MonoBehaviour
         player = Instantiate(playerPrefab);
         player.transform.localScale = GameManager.instance.gameScale;
         player.GetComponent<Player>().SetHealthDisplayText(healthDisplayText);
+        player.GetComponent<NavMeshAgent>().speed = gameScale.x;
         
         player.GetComponent<NavMeshAgent>().Warp(playerSpawn.position); // must warp so that the NavMesh is found by NavMeshAgent
     }
