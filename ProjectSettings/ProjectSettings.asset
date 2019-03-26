@@ -130,7 +130,7 @@ PlayerSettings:
       depthFormat: 0
       enableTransitionView: 0
     daydream:
-      depthFormat: 0
+      depthFormat: 1
       useSustainedPerformanceMode: 0
       enableVideoLayer: 0
       useProtectedVideoMemory: 0
@@ -405,7 +405,7 @@ PlayerSettings:
     m_Devices:
     - WindowsMR
   - m_BuildTarget: Android
-    m_Enabled: 0
+    m_Enabled: 1
     m_Devices:
     - daydream
   m_BuildTargetEnableVuforiaSettings: []

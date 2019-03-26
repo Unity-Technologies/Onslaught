@@ -10,6 +10,7 @@
     "com.unity.xr.arcore": "1.0.0-preview.24",
     "com.unity.xr.arfoundation": "1.1.0-preview.6",
     "com.unity.xr.arkit": "1.0.0-preview.23",
+    "com.unity.xr.googlevr.android": "1.18.3",
     "com.unity.xr.legacyinputhelpers": "2.0.2",
     "com.unity.xr.oculus.standalone": "1.29.1",
     "com.unity.modules.ai": "1.0.0",
