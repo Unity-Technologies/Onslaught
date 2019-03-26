@@ -147,7 +147,10 @@ public class InputAbstraction : MonoBehaviour
             switch (Alias)
             {
                 case ButtonAlias.AXIS_CLICK:
-                    return "VR_Primary2DAxisClickButton_Left";
+                    if (XRSettings.loadedDeviceName == "WindowsMR")
+                        return "VR_Thumbrest_Left";
+                    else
+                        return "VR_Primary2DAxisClickButton_Left";
                 case ButtonAlias.AXIS_TOUCH:
                     return "VR_Primary2DAxisTouchButton_Left";
                 default:
@@ -159,7 +162,10 @@ public class InputAbstraction : MonoBehaviour
             switch (Alias)
             {
                 case ButtonAlias.AXIS_CLICK:
-                    return "VR_Primary2DAxisClickButton_Right";
+                    if (XRSettings.loadedDeviceName == "WindowsMR")
+                        return "VR_Thumbrest_Right";
+                    else
+                        return "VR_Primary2DAxisClickButton_Right";
                 case ButtonAlias.AXIS_TOUCH:
                     return "VR_Primary2DAxisTouchButton_Right";
                 default:
