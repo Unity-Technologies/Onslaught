@@ -97,11 +97,17 @@ public class InputAbstraction : MonoBehaviour
         newARFrame = true;
     }
 
-    public void ARSetFireDirection(Vector2 direction)
+    public void ARSetFireDirection(Vector2 joystickDirection)
     {
         isAR = true;
 
-        newARInputState.xy = direction;
+        // assumes game is placed on floor
+        Vector3 ProjectedCamera = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up);
+        Vector2 CameraForward = new Vector2(ProjectedCamera.x, ProjectedCamera.z);
+        float angle = Vector2.SignedAngle(Vector2.up, joystickDirection) + Vector2.SignedAngle(Vector2.up, CameraForward);
+        angle *= (2 * Mathf.PI) / 360f;
+
+        newARInputState.xy = new Vector2(-Mathf.Sin(angle), Mathf.Cos(angle));
         newARFrame = true;
     }
 
