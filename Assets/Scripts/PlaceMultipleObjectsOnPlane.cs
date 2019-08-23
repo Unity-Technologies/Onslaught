@@ -6,6 +6,7 @@ using UnityEngine.Experimental.XR;
 using UnityEngine.XR.ARFoundation;
 
 [RequireComponent(typeof(ARSessionOrigin))]
+[RequireComponent(typeof(ARRaycastManager))]
 public class PlaceMultipleObjectsOnPlane : MonoBehaviour
 {
     [SerializeField]
@@ -32,12 +33,14 @@ public class PlaceMultipleObjectsOnPlane : MonoBehaviour
     public static event Action onPlacedObject;
 
     ARSessionOrigin m_SessionOrigin;
+    ARRaycastManager m_RaycastManager;
 
     static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
 
     void Awake()
     {
         m_SessionOrigin = GetComponent<ARSessionOrigin>();
+        m_RaycastManager = GetComponent<ARRaycastManager>();
     }
 
     void Update()
@@ -48,7 +51,7 @@ public class PlaceMultipleObjectsOnPlane : MonoBehaviour
 
             if (touch.phase == TouchPhase.Began)
             {
-                if (m_SessionOrigin.Raycast(touch.position, s_Hits, TrackableType.PlaneWithinPolygon))
+                if (m_RaycastManager.Raycast(touch.position, s_Hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
                 {
                     Pose hitPose = s_Hits[0].pose;
 

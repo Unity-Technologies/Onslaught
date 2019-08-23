@@ -11,6 +11,7 @@ using UnityEngine.XR.ARFoundation;
 /// and moved to the hit position.
 /// </summary>
 [RequireComponent(typeof(ARSessionOrigin))]
+[RequireComponent(typeof(ARRaycastManager))]
 public class PlaceOnPlane : MonoBehaviour
 {
     [SerializeField]
@@ -37,6 +38,7 @@ public class PlaceOnPlane : MonoBehaviour
     void Awake()
     {
         m_SessionOrigin = GetComponent<ARSessionOrigin>();
+        m_RaycastManager = GetComponent<ARRaycastManager>();
 
         setupUI.SetActive(true);
         gameplayUI.SetActive(false);
@@ -49,7 +51,7 @@ public class PlaceOnPlane : MonoBehaviour
 
         var touch = Input.GetTouch(0);
 
-        if (m_SessionOrigin.Raycast(touch.position, s_Hits, TrackableType.PlaneWithinPolygon))
+        if (m_RaycastManager.Raycast(touch.position, s_Hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
         {
             // Raycast hits are sorted by distance, so the first one
             // will be the closest hit.
@@ -75,4 +77,5 @@ public class PlaceOnPlane : MonoBehaviour
     static List<ARRaycastHit> s_Hits = new List<ARRaycastHit>();
 
     ARSessionOrigin m_SessionOrigin;
+    ARRaycastManager m_RaycastManager;
 }

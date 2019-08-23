@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
         set { m_TapToPlaceAnimation = value; }
     }
 
-    static List<ARPlane> s_Planes = new List<ARPlane>();
+    static TrackableCollection<ARPlane> s_Planes = new TrackableCollection<ARPlane>();
 
     bool m_ShowingTapToPlace = false;
 
@@ -42,13 +42,13 @@ public class UIManager : MonoBehaviour
 
     void OnEnable()
     {
-        ARSubsystemManager.cameraFrameReceived += FrameChanged;
+        Camera.main.GetComponent<ARCameraManager>().frameReceived += FrameChanged;
         PlaceMultipleObjectsOnPlane.onPlacedObject += PlacedObject;
     }
 
     void OnDisable()
     {
-        ARSubsystemManager.cameraFrameReceived -= FrameChanged;
+        Camera.main.GetComponent<ARCameraManager>().frameReceived -= FrameChanged;
         PlaceMultipleObjectsOnPlane.onPlacedObject -= PlacedObject;
     }
 
@@ -72,8 +72,8 @@ public class UIManager : MonoBehaviour
         if (planeManager == null)
             return false;
 
-        planeManager.GetAllPlanes(s_Planes);
-        return s_Planes.Count > 0;
+        s_Planes = planeManager.trackables;
+        return s_Planes.count > 0;
     }
 
     void PlacedObject()

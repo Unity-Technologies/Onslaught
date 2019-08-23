@@ -27,21 +27,22 @@ public class ARFeatheredPlaneMeshVisualizer : MonoBehaviour
     {
         m_PlaneMeshVisualizer = GetComponent<ARPlaneMeshVisualizer>();
         m_FeatheredPlaneMaterial = GetComponent<MeshRenderer>().material;
+        m_Plane = GetComponent<ARPlane>();
     }
 
     void OnEnable()
     {
-        m_PlaneMeshVisualizer.meshUpdated += ARPlaneMeshVisualizer_meshUpdated;
+        m_Plane.boundaryChanged += ARPlaneMeshVisualizer_meshUpdated;
     }
 
     void OnDisable()
     {
-        m_PlaneMeshVisualizer.meshUpdated -= ARPlaneMeshVisualizer_meshUpdated;
+        m_Plane.boundaryChanged -= ARPlaneMeshVisualizer_meshUpdated;
     }
 
-    void ARPlaneMeshVisualizer_meshUpdated(ARPlaneMeshVisualizer planeMeshVisualizer)
+    void ARPlaneMeshVisualizer_meshUpdated(ARPlaneBoundaryChangedEventArgs planeMeshVisualizer)
     {
-        GenerateBoundaryUVs(planeMeshVisualizer.mesh);
+        GenerateBoundaryUVs(m_PlaneMeshVisualizer.mesh);
     }
 
     /// <summary>
@@ -104,4 +105,6 @@ public class ARFeatheredPlaneMeshVisualizer : MonoBehaviour
     ARPlaneMeshVisualizer m_PlaneMeshVisualizer;
 
     Material m_FeatheredPlaneMaterial;
+
+    ARPlane m_Plane;
 }

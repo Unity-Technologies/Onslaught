@@ -25,27 +25,32 @@ public class DisableVerticalPlanes : MonoBehaviour
 
     void OnEnable()
     {
-        GetComponent<ARPlaneManager>().planeAdded += OnPlaneAdded;
+        GetComponent<ARPlaneManager>().planesChanged += OnPlaneAdded;
     }
 
     void OnDisable()
     {
-        GetComponent<ARPlaneManager>().planeAdded -= OnPlaneAdded;
+        GetComponent<ARPlaneManager>().planesChanged -= OnPlaneAdded;
     }
 
-    void OnPlaneAdded(ARPlaneAddedEventArgs eventArgs)
+    void OnPlaneAdded(ARPlanesChangedEventArgs eventArgs)
     {
-        var plane = eventArgs.plane;
+        ARPlane plane;
 
-        // Check whether the plane is a vertical plane.
-        if (plane.boundedPlane.Alignment == PlaneAlignment.Vertical)
+        for (int i = 0; i < eventArgs.added.Count; i++)
         {
-            // Disable the entire GameObject.
-            plane.gameObject.SetActive(false);
+            plane = eventArgs.added[i];
 
-            // Add to our log so the user knows something happened.
-            if (logText != null)
-                logText.text = string.Format("\n{0}", plane.boundedPlane.Id);
+            // Check whether the plane is a vertical plane.
+            if (plane.alignment == UnityEngine.XR.ARSubsystems.PlaneAlignment.Vertical)
+            {
+                // Disable the entire GameObject.
+                plane.gameObject.SetActive(false);
+
+                // Add to our log so the user knows something happened.
+                if (logText != null)
+                    logText.text = string.Format("\n{0}", plane.trackableId);
+            }
         }
     }
 }
